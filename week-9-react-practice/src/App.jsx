@@ -24,18 +24,24 @@ function App() {
 function Counter() {
   const [count, setCount] = useState(0)
 
-  console.log("counter");
+  // console.log("counter");
 
   //hooking into the lifecycle events
   useEffect(function () {
-    setInterval(() => {
+    console.log("on mount")
+    let clock = setInterval(() => {
       // setCount(count => count+1)
-
+      console.log("inside the setInterval");
       setCount((count) => {
         return count+1
       });
     }, 1000)
-    console.log("mounted");
+
+    return function() {
+      console.log("unmount");
+      
+      clearInterval(clock)
+    }
 
   }, []); //dependancy array
 
