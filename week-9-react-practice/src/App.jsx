@@ -1,9 +1,21 @@
 import { useState, useEffect } from "react"
 
 function App() {
+
+  let [counterVisible, setCounterVisible] = useState(true)
+
+  useEffect(()=>{
+    setInterval(()=>{
+      setCounterVisible(c => !c)
+    },5000)
+  },[])
+
   return (
     <div>
-      <Counter></Counter>
+      hi
+      { counterVisible && <Counter />}
+      hello
+      {/* <Counter></Counter> */}
     </div>
   )
 }
@@ -16,14 +28,16 @@ function Counter() {
 
   //hooking into the lifecycle events
   useEffect(function () {
-    setInterval(function () {
-      setCount(function(count){
+    setInterval(() => {
+      // setCount(count => count+1)
+
+      setCount((count) => {
         return count+1
       });
     }, 1000)
     console.log("mounted");
 
-  }, []);
+  }, []); //dependancy array
 
   function increaseCount() {
     setCount(count + 1)
