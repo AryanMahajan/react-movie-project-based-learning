@@ -34,6 +34,10 @@ function Counter(props) {
 
   useEffect(()=>{
     console.log("count has changed")
+
+    return () =>{
+      console.log("cleanup inside second effect")
+    }
   },[props.count])
 
   return <div>
